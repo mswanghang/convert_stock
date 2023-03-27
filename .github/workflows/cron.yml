@@ -1,0 +1,19 @@
+name: autorun
+on:
+  workflow_dispatch: #允许手动执行
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 2 * * *' # 每天十点执行
+
+jobs:
+  autorun:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: run code
+        run: |
+        # python3 demo.py -s xxx@163.com -r "xxx@qq.com","xxx@qq.com" --host smtp.163.com -u xxx@163.com -p xxx
+          python3 demo.py ${{ secrets.MAIL_ARGS }}
