@@ -4,20 +4,19 @@
 
  知识点
 	0.requests
-	1.json
-	2.正则 
-	3.datetime时间处理
+	1.json. json格式数据，json格式字符串。
+	2.正则. 分组
+	3.datetime时间处理. 字符串，时间格式数据。
+
+	4.github aciton.  cron 定时 https://blog.csdn.net/Ximerr/article/details/123501772
 
 '''
 
 
 import requests
 import re
-
 import json
-
 import datetime
-
 import mail
 
 
@@ -73,7 +72,8 @@ def get_data():
 			# 只处理当天的可转债
 			result += i['SECUCODE'] +' ' + i['SECURITY_NAME_ABBR'] + ' '+ PUBLIC_START_DATE +'\n'
 		print(result)
-		mail.sendEmailByArgs('今日可转债打新 提醒',result)
+		if result != '':
+			mail.sendEmailByArgs('今日可转债打新 提醒',result)
 	except Exception as e:
 		pass
 		# myLog.logErr(e)
