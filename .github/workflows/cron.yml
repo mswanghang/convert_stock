@@ -11,7 +11,7 @@ jobs:
   autorun:
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
+      - name: Checkout source
         uses: actions/checkout@v2
       - name: run code
         run: |
